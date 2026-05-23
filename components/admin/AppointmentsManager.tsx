@@ -230,22 +230,22 @@ export function AppointmentsManager() {
           <tbody>
             {filtered.map((apt) => (
               <tr key={apt.id}>
-                <td>
+                <td data-label="Cliente">
                   {apt.clientName}
                   <br />
                   <small style={{ color: "var(--color-gray-mid)" }}>
                     {apt.clientPhone}
                   </small>
                 </td>
-                <td>{apt.barberName}</td>
-                <td>{apt.serviceName}</td>
-                <td>{formatShortDate(apt.date)}</td>
-                <td>{apt.time}</td>
-                <td>{formatCurrency(apt.price)}</td>
-                <td>
+                <td data-label="Barbeiro">{apt.barberName}</td>
+                <td data-label="Serviço">{apt.serviceName}</td>
+                <td data-label="Data">{formatShortDate(apt.date)}</td>
+                <td data-label="Horário">{apt.time}</td>
+                <td data-label="Valor">{formatCurrency(apt.price)}</td>
+                <td data-label="Status">
                   <StatusBadge status={apt.status} />
                 </td>
-                <td>
+                <td data-label="Ações">
                   <div className={styles.actions}>
                     <button
                       type="button"

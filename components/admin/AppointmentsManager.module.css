@@ -93,8 +93,66 @@
   gap: 1rem;
 }
 
-@media (max-width: 600px) {
+/* ─── Mobile: tabela vira cards ──────────────────────── */
+@media (max-width: 768px) {
+  .tableWrap {
+    border: none;
+    border-radius: 0;
+    overflow-x: visible;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .table,
+  .table tbody,
+  .table tr,
+  .table td {
+    display: block;
+    width: 100%;
+  }
+
+  .table tr {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    margin-bottom: 0.75rem;
+    padding: 0.25rem 0;
+  }
+
+  .table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.625rem 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    font-size: 0.875rem;
+  }
+
+  .table td:first-child {
+    border-top: none;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-gray-light);
+    flex-shrink: 0;
+    min-width: 80px;
+  }
+
+  .table td:last-child {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .formRow {
     grid-template-columns: 1fr;
   }
 }
+

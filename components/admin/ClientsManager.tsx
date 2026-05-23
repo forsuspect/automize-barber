@@ -92,16 +92,16 @@ export function ClientsManager() {
           <tbody>
             {filtered.map((client) => (
               <tr key={client.id}>
-                <td>{client.name}</td>
-                <td>{client.phone}</td>
-                <td>{client.visitCount}</td>
-                <td>
+                <td data-label="Nome">{client.name}</td>
+                <td data-label="Telefone">{client.phone}</td>
+                <td data-label="Visitas">{client.visitCount}</td>
+                <td data-label="Serviços">
                   {client.lastServices.length > 0
                     ? client.lastServices.join(", ")
                     : "—"}
                 </td>
-                <td>{client.notes ?? "—"}</td>
-                <td>
+                <td data-label="Obs.">{client.notes ?? "—"}</td>
+                <td data-label="Ações">
                   <div className={styles.actions}>
                     <button
                       type="button"

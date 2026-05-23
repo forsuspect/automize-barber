@@ -141,9 +141,23 @@
   .panelsGrid {
     grid-template-columns: 1fr;
   }
+
+  .content {
+    padding: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
+  .metricsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .content {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 360px) {
   .metricsGrid {
     grid-template-columns: 1fr;
   }

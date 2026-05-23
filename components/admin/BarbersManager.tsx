@@ -136,18 +136,18 @@ export function BarbersManager() {
           <tbody>
             {barbers.map((barber) => (
               <tr key={barber.id}>
-                <td>{barber.name}</td>
-                <td>{barber.specialty}</td>
-                <td>
+                <td data-label="Nome">{barber.name}</td>
+                <td data-label="Especialidade">{barber.specialty}</td>
+                <td data-label="Horário">
                   {barber.workStart} — {barber.workEnd}
                 </td>
-                <td>
+                <td data-label="Dias">
                   {barber.availableDays
                     .map((d) => DAYS.find((x) => x.value === d)?.label)
                     .join(", ")}
                 </td>
-                <td>{barber.active ? "Ativo" : "Inativo"}</td>
-                <td>
+                <td data-label="Status">{barber.active ? "Ativo" : "Inativo"}</td>
+                <td data-label="Ações">
                   <div className={styles.actions}>
                     <button
                       type="button"
