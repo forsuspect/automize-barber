@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { Button } from "@/components/ui/Button";
 import { BRAND } from "@/lib/constants";
@@ -11,6 +11,10 @@ import styles from "./Hero.module.css";
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -21,6 +25,11 @@ export function Hero() {
   const titleParts = BRAND.tagline.split(" ");
   const lastWord = titleParts.pop() ?? "";
   const titleStart = titleParts.join(" ");
+
+  const fadeUp = (delay: number) =>
+    mounted
+      ? { initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { delay, duration: 0.6 } }
+      : {};
 
   return (
     <section id="inicio" className={styles.hero} ref={ref}>
@@ -41,50 +50,33 @@ export function Hero() {
 
       <div className={styles.frame} aria-hidden />
 
-      <motion.div className={styles.content} style={{ opacity }}>
+      <motion.div className={styles.content} style={mounted ? { opacity } : {}}>
         <motion.div
           className={styles.logoWrap}
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.1, duration: 0.6 }}
+          {...fadeUp(0.1)}
         >
           <BrandLogo href="#inicio" size="lg" />
         </motion.div>
 
-        <motion.span
-          className={styles.eyebrow}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
+        <motion.span className={styles.eyebrow} {...fadeUp(0.2)}>
           Premium Experience
         </motion.span>
 
         <motion.h1
           className={styles.title}
-          initial={{ opacity: 0, y: 32 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.7 }}
+          {...(mounted
+            ? { initial: { opacity: 0, y: 32 }, animate: { opacity: 1, y: 0 }, transition: { delay: 0.3, duration: 0.7 } }
+            : {})}
         >
           {titleStart}{" "}
           <span className={styles.titleAccent}>{lastWord}</span>
         </motion.h1>
 
-        <motion.p
-          className={styles.subtitle}
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.45 }}
-        >
+        <motion.p className={styles.subtitle} {...fadeUp(0.45)}>
           {BRAND.subtitle}
         </motion.p>
 
-        <motion.div
-          className={styles.ctas}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.55 }}
-        >
+        <motion.div className={styles.ctas} {...fadeUp(0.55)}>
           <Link href="/agendar" className={styles.ctaLink}>
             <Button size="lg" fullWidth>
               Agendar horário
@@ -101,9 +93,9 @@ export function Hero() {
       <motion.a
         href="#sobre"
         className={styles.scrollIndicator}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
+        {...(mounted
+          ? { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { delay: 1 } }
+          : {})}
         aria-label="Rolar para baixo"
       >
         <span>Scroll</span>

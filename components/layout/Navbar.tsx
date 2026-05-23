@@ -13,26 +13,36 @@ import styles from "./Navbar.module.css";
 const SECTION_IDS = NAV_LINKS.map((l) => l.href.replace("#", ""));
 
 export function Navbar() {
+  const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const activeId = useScrollSpy(SECTION_IDS);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    setMounted(true);
   }, []);
 
   useEffect(() => {
+    if (!mounted) return;
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [mounted]);
+
+  // Prevent body scroll when mobile menu open
+  useEffect(() => {
+    if (!mounted) return;
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen, mounted]);
+
+  const closeMobile = () => setMobileOpen(false);
 
   return (
     <header
       className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}
+      suppressHydrationWarning
     >
       <div className={styles.inner}>
         <BrandLogo href="#inicio" size="sm" />
@@ -44,7 +54,7 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`${styles.link} ${activeId === id ? styles.active : ""}`}
+                className={`${styles.link} ${mounted && activeId === id ? styles.active : ""}`}
               >
                 {link.label}
               </a>
@@ -61,6 +71,7 @@ export function Navbar() {
             className={styles.menuBtn}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={mobileOpen}
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -68,13 +79,13 @@ export function Navbar() {
       </div>
 
       <AnimatePresence>
-        {mobileOpen ? (
+        {mobileOpen && (
           <motion.nav
             className={styles.mobileMenu}
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", damping: 28, stiffness: 300 }}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
           >
             {NAV_LINKS.map((link) => {
               const id = link.href.replace("#", "");
@@ -82,20 +93,20 @@ export function Navbar() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className={`${styles.mobileLink} ${activeId === id ? styles.active : ""}`}
-                  onClick={() => setMobileOpen(false)}
+                  className={`${styles.mobileLink} ${mounted && activeId === id ? styles.active : ""}`}
+                  onClick={closeMobile}
                 >
                   {link.label}
                 </a>
               );
             })}
             <div className={styles.mobileCta}>
-              <Link href="/agendar" onClick={() => setMobileOpen(false)}>
+              <Link href="/agendar" onClick={closeMobile}>
                 <Button fullWidth>Agendar horário</Button>
               </Link>
             </div>
           </motion.nav>
-        ) : null}
+        )}
       </AnimatePresence>
     </header>
   );
