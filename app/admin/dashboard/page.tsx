@@ -20,7 +20,7 @@ export default function DashboardPage() {
     .filter(
       (a) =>
         a.date === today &&
-        (a.status === "confirmed" || a.status === "completed")
+        (a.status === "confirmado" || a.status === "completado")
     )
     .reduce((sum, a) => sum + a.price, 0);
 

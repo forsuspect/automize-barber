@@ -25,7 +25,7 @@ export function RevenueChart() {
       .filter(
         (a) =>
           a.date === dateStr &&
-          (a.status === "confirmed" || a.status === "completed")
+          (a.status === "confirmado" || a.status === "completado")
       )
       .reduce((sum, a) => sum + a.price, 0);
     return { name: dayLabel, faturamento: revenue };

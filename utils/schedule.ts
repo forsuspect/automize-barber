@@ -38,7 +38,7 @@ export function isSlotAvailable(
     (a) =>
       a.barberId === barberId &&
       a.date === date &&
-      a.status !== "cancelled" &&
+      a.status !== "cancelado" &&
       a.id !== excludeId
   );
 
