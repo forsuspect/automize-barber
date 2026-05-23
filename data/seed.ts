@@ -1,0 +1,227 @@
+import type { AppData } from "@/types";
+
+export const SEED_DATA: AppData = {
+  services: [
+    {
+      id: "svc-1",
+      name: "Corte Masculino",
+      description: "Corte personalizado com acabamento premium e finalização exclusiva.",
+      price: 85,
+      duration: 45,
+      icon: "scissors",
+    },
+    {
+      id: "svc-2",
+      name: "Barba",
+      description: "Design de barba com toalha quente, navalha e produtos de alta performance.",
+      price: 65,
+      duration: 35,
+      icon: "sparkles",
+    },
+    {
+      id: "svc-3",
+      name: "Pigmentação",
+      description: "Correção e pigmentação capilar para um visual impecável e natural.",
+      price: 120,
+      duration: 60,
+      icon: "palette",
+    },
+    {
+      id: "svc-4",
+      name: "Sobrancelha",
+      description: "Design preciso de sobrancelhas para harmonizar seu rosto.",
+      price: 45,
+      duration: 20,
+      icon: "eye",
+    },
+    {
+      id: "svc-5",
+      name: "Combo Premium",
+      description: "Experiência completa: corte, barba, tratamento capilar e massagem.",
+      price: 195,
+      duration: 90,
+      icon: "crown",
+    },
+    {
+      id: "svc-6",
+      name: "Corte + Barba",
+      description: "O combo clássico com o padrão Automize de excelência.",
+      price: 130,
+      duration: 70,
+      icon: "star",
+    },
+  ],
+  barbers: [
+    {
+      id: "barb-1",
+      name: "Rafael Costa",
+      specialty: "Cortes clássicos & fades",
+      photo:
+        "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=400&h=500&fit=crop",
+      rating: 4.9,
+      reviewCount: 328,
+      instagram: "rafaelcosta",
+      availableDays: [1, 2, 3, 4, 5, 6],
+      workStart: "09:00",
+      workEnd: "21:00",
+      active: true,
+    },
+    {
+      id: "barb-2",
+      name: "Lucas Mendes",
+      specialty: "Barba & grooming",
+      photo:
+        "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=400&h=500&fit=crop",
+      rating: 4.8,
+      reviewCount: 256,
+      instagram: "lucasmendes",
+      availableDays: [1, 2, 3, 4, 5],
+      workStart: "10:00",
+      workEnd: "20:00",
+      active: true,
+    },
+    {
+      id: "barb-3",
+      name: "Thiago Alves",
+      specialty: "Pigmentação & design",
+      photo:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop",
+      rating: 5.0,
+      reviewCount: 189,
+      instagram: "thiagoalves",
+      availableDays: [2, 3, 4, 5, 6],
+      workStart: "09:00",
+      workEnd: "19:00",
+      active: true,
+    },
+  ],
+  clients: [
+    {
+      id: "cli-1",
+      name: "Marcos Oliveira",
+      phone: "(11) 98765-4321",
+      notes: "Prefere corte baixo nas laterais",
+      visitCount: 12,
+      lastServices: ["Corte Masculino", "Barba"],
+      createdAt: "2025-01-15T10:00:00.000Z",
+    },
+    {
+      id: "cli-2",
+      name: "Pedro Santos",
+      phone: "(11) 91234-5678",
+      visitCount: 5,
+      lastServices: ["Combo Premium"],
+      createdAt: "2025-03-20T14:00:00.000Z",
+    },
+  ],
+  appointments: [
+    {
+      id: "apt-1",
+      clientId: "cli-1",
+      clientName: "Marcos Oliveira",
+      clientPhone: "(11) 98765-4321",
+      barberId: "barb-1",
+      barberName: "Rafael Costa",
+      serviceId: "svc-1",
+      serviceName: "Corte Masculino",
+      date: new Date().toISOString().split("T")[0],
+      time: "10:00",
+      duration: 45,
+      price: 85,
+      status: "confirmado",
+      createdAt: new Date().toISOString(),
+    },
+    {
+      id: "apt-2",
+      clientId: "cli-2",
+      clientName: "Pedro Santos",
+      clientPhone: "(11) 91234-5678",
+      barberId: "barb-2",
+      barberName: "Lucas Mendes",
+      serviceId: "svc-5",
+      serviceName: "Combo Premium",
+      date: new Date().toISOString().split("T")[0],
+      time: "14:00",
+      duration: 90,
+      price: 195,
+      status: "pendente",
+      createdAt: new Date().toISOString(),
+    },
+  ],
+  testimonials: [
+    {
+      id: "test-1",
+      name: "André Ferreira",
+      photo:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
+      comment:
+        "A melhor barbearia que já frequentei. Ambiente impecável, atendimento VIP e resultado sempre perfeito.",
+      rating: 5,
+    },
+    {
+      id: "test-2",
+      name: "Felipe Rocha",
+      photo:
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop",
+      comment:
+        "O Rafael é um artista. Cada visita é uma experiência premium. Recomendo demais!",
+      rating: 5,
+    },
+    {
+      id: "test-3",
+      name: "Gustavo Lima",
+      photo:
+        "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop",
+      comment:
+        "Agendamento fácil, pontualidade e qualidade excepcional. Virou minha barbearia fixa.",
+      rating: 5,
+    },
+    {
+      id: "test-4",
+      name: "Ricardo Menezes",
+      photo:
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop",
+      comment:
+        "Design moderno, produtos de primeira e profissionais que realmente entendem do assunto.",
+      rating: 5,
+    },
+  ],
+  gallery: [
+    {
+      id: "gal-1",
+      src: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=600&h=800&fit=crop",
+      alt: "Interior premium da barbearia",
+      height: 320,
+    },
+    {
+      id: "gal-2",
+      src: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&h=500&fit=crop",
+      alt: "Corte masculino premium",
+      height: 260,
+    },
+    {
+      id: "gal-3",
+      src: "https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&h=700&fit=crop",
+      alt: "Design de barba",
+      height: 300,
+    },
+    {
+      id: "gal-4",
+      src: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&h=500&fit=crop",
+      alt: "Barbeiro em ação",
+      height: 240,
+    },
+    {
+      id: "gal-5",
+      src: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=600&h=800&fit=crop",
+      alt: "Fade premium",
+      height: 340,
+    },
+    {
+      id: "gal-6",
+      src: "https://images.unsplash.com/photo-1593702275687-f2b0389453fb?w=600&h=600&fit=crop",
+      alt: "Ambiente sofisticado",
+      height: 280,
+    },
+  ],
+};

@@ -1,0 +1,54 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.fullscreen {
+  position: fixed;
+  inset: 0;
+  background: var(--color-black);
+  z-index: 9999;
+}
+
+.logoImg {
+  filter: drop-shadow(0 4px 24px rgba(201, 169, 98, 0.4));
+  animation: logoPulse 2s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+.ring {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(201, 169, 98, 0.2);
+  border-top-color: var(--color-gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.text {
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  color: var(--color-gray-light);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,125 @@
+.section {
+  composes: section from "../../styles/sections.module.css";
+  background: var(--color-black);
+}
+
+.container {
+  composes: container from "../../styles/sections.module.css";
+}
+
+.masonry {
+  columns: 3;
+  column-gap: clamp(0.5rem, 2vw, 1rem);
+}
+
+.item {
+  break-inside: avoid;
+  margin-bottom: clamp(0.5rem, 2vw, 1rem);
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform var(--transition-slow);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.item:hover img {
+  transform: scale(1.05);
+}
+
+.item:hover .overlay {
+  opacity: 1;
+}
+
+.zoomIcon {
+  color: var(--color-gold);
+}
+
+/* Carrossel mobile */
+.slideItem {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  max-height: 420px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--glass-border);
+}
+
+.slideImage {
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.slideItem:active .slideImage {
+  transform: scale(1.02);
+}
+
+.slideItem .overlay {
+  opacity: 0;
+}
+
+.slideItem:active .overlay {
+  opacity: 1;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--section-pad-x);
+}
+
+.lightboxImg {
+  max-width: min(90vw, 100%);
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+}
+
+.lightboxClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: var(--color-white);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 900px) {
+  .masonry {
+    columns: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .masonry {
+    columns: 1;
+  }
+}

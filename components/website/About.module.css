@@ -1,0 +1,128 @@
+.section {
+  composes: section from "../../styles/sections.module.css";
+  background: var(--color-black-soft);
+}
+
+.container {
+  composes: container from "../../styles/sections.module.css";
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.imageWrap {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  max-height: min(520px, 70vh);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+}
+
+.imageWrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  pointer-events: none;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.content {
+  min-width: 0;
+}
+
+.content h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  color: var(--color-white);
+  margin-bottom: 1rem;
+}
+
+.content p {
+  color: var(--color-gray-light);
+  margin-bottom: 1.25rem;
+  line-height: 1.8;
+  font-size: clamp(0.9375rem, 2vw, 1rem);
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.feature {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  min-width: 0;
+}
+
+.feature:hover {
+  border-color: var(--color-gold);
+  box-shadow: var(--shadow-gold);
+  transform: translateY(-3px);
+}
+
+.featureIcon {
+  color: var(--color-gold);
+  margin-bottom: 0.5rem;
+}
+
+.feature h4 {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  color: var(--color-white);
+  margin-bottom: 0.25rem;
+}
+
+.feature p {
+  font-size: 0.8125rem;
+  margin: 0;
+  color: var(--color-gray-mid);
+  line-height: 1.5;
+}
+
+.mobileCarouselWrap {
+  margin-bottom: 1.5rem;
+}
+
+.carouselImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  max-height: 380px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .imageWrap {
+    max-height: 320px;
+    aspect-ratio: 16/10;
+  }
+}
+
+@media (max-width: 480px) {
+  .features {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,140 @@
+.section {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
+  padding: clamp(3.5rem, 8vw, 6rem) 0;
+  background: var(--color-black-soft);
+}
+
+.container {
+  width: 100%;
+  max-width: min(1280px, 100% - 2rem);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 1.5rem);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: all var(--transition-base);
+  min-width: 0;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(201, 169, 98, 0.3);
+}
+
+.photoWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/4;
+  max-height: 360px;
+  overflow: hidden;
+}
+
+.photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  transition: transform var(--transition-slow);
+}
+
+.card:hover .photo {
+  transform: scale(1.05);
+}
+
+.body {
+  padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  color: var(--color-white);
+  margin-bottom: 0.25rem;
+}
+
+.specialty {
+  font-size: 0.8125rem;
+  color: var(--color-gold);
+  margin-bottom: 0.75rem;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--color-gray-light);
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+  color: var(--color-gold);
+  flex-shrink: 0;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.socialLink {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-gray-light);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.socialLink:hover {
+  background: rgba(201, 169, 98, 0.2);
+  color: var(--color-gold);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .photoWrap {
+    max-height: 320px;
+  }
+}
